@@ -1,15 +1,17 @@
 import { test, expect } from "@playwright/test";
-import { PageManager } from "../../src/PageManger/PageManger";
-
+import { SearchPage } from "../../src/Pages/SearchPage";
+import { BottomHeader } from "../../src/Shared/BottomHeader";
 test.beforeEach(async ({ page }) => {
   await page.goto("https://demo.nopcommerce.com/");
 });
 test("Search for item", async ({ page }) => {
-  const val = new PageManager(page);
+  const searchBarObject = new BottomHeader(page);
   const item = "Leica T Mirrorless Digital Camera";
-  //   const secondPageSeclector = val.onSearchPage().itemImage;
-  await val.onBottomHeader().SearchProduct(item);
-
-  await page.waitForSelector("item-grid .item-box .picture");
-  await val.onSearchPage().clickItemImage(item);
+  //   const secondPageSelector = val.onSearchPage().itemImage;
+  await searchBarObject.SearchProduct(item);
+  const searchObject = new SearchPage(page);
+  const imgLocator = `img[alt="Picture of ${item}"]`;
+  await page.waitForSelector(imgLocator);
+  await searchObject.clickItemImage(item);
+  await expect(page.locator("product-reviews-overview")).toBeDefined();
 });

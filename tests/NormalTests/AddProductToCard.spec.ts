@@ -1,22 +1,30 @@
 import { test, expect } from "@playwright/test";
-import { PageManager } from "../../src/PageManger/PageManger";
-
+import { BottomHeader } from "../../src/Shared/BottomHeader";
+import { ProductPage } from "../../src/Pages/ProductPage";
 test.beforeEach(async ({ page }) => {
   await page.goto("https://demo.nopcommerce.com/");
 });
 
 test("Add product to card", async ({ page }) => {
-  const val = new PageManager(page);
-  await val.onBottomHeader().SearchProduct("Leica T Mirrorless Digital Camera");
+  const searchBarObject = new BottomHeader(page);
+  await searchBarObject.SearchProduct("Leica T Mirrorless Digital Camera");
   await page.goto("https://demo.nopcommerce.com/leica-t-mirrorless-digital-camera");
-  await val.onProductPage().addToCard(5);
-  expect(val.onProductPage().notificationBar).toHaveCSS("position", "fixed");
+  const productObject = new ProductPage(page);
+  await productObject.addToCard(5);
+
+  await page.waitForSelector("#bar-notification");
+
+  await expect(productObject.notificationBar).toBeVisible();
 });
 
-test("Add product to wishlist", async ({ page }) => {
+test("Add 0 proudect to card", async ({ page }) => {
+  const searchBarObject = new BottomHeader(page);
+  await searchBarObject.SearchProduct("Leica T Mirrorless Digital Camera");
   await page.goto("https://demo.nopcommerce.com/leica-t-mirrorless-digital-camera");
+  const productObject = new ProductPage(page);
+  await productObject.addToCard(0);
 
-  await page.locator(".overview-buttons .add-to-wishlist-button").click();
-  await page.locator(".overview-buttons .add-to-compare-list-button").click();
-  await page.locator(".overview-buttons .email-a-friend-button").click();
+  await page.waitForSelector(".bar-notification.error");
+
+  await expect(productObject.notificationBarError).toBeVisible();
 });

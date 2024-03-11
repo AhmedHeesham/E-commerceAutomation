@@ -16,7 +16,9 @@ export class Header extends PageBase {
     this.login = this.page.locator(".header-links ul li", { hasText: "Log in" });
     this.logout = this.page.locator(".header-links ul li", { hasText: "Log out" });
     this.register = this.page.locator(".header-links ul li", { hasText: "Register" });
-    this.customerCurreny = this.page.locator(".header .header-upper .header-selectors-wrapper").getByLabel("Currency selector");
+    this.customerCurreny = this.page
+      .locator(".header .header-upper .header-selectors-wrapper")
+      .getByLabel("Currency selector");
   }
   async clickWishlist() {
     await this.wishlist.click();
@@ -31,6 +33,6 @@ export class Header extends PageBase {
     await this.register.click();
   }
   async clickCurrencySelector() {
-    // await this.customerCurreny.click();
+    // await this.customerCurrent.click();
   }
 }
