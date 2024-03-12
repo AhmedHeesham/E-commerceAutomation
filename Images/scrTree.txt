@@ -1,0 +1,20 @@
+📦src
+ ┣ 📂PageManger
+ ┃ ┗ 📜PageManger.ts
+ ┣ 📂Pages
+ ┃ ┣ 📂ComputersPages
+ ┃ ┣ 📂ProductsPages
+ ┃ ┃ ┗ 📂Apparel
+ ┃ ┃ ┃ ┣ 📜ApparelPage.ts
+ ┃ ┃ ┃ ┗ 📜ShoesPage.ts
+ ┃ ┣ 📜.DS_Store
+ ┃ ┣ 📜CardPage.ts
+ ┃ ┣ 📜LogInPage.ts
+ ┃ ┣ 📜PageBase.ts
+ ┃ ┣ 📜ProductPage.ts
+ ┃ ┣ 📜RegisterPage.ts
+ ┃ ┗ 📜SearchPage.ts
+ ┣ 📂Shared
+ ┃ ┣ 📜BottomHeader.ts
+ ┃ ┗ 📜Header.ts
+ ┗ 📜.DS_Store
