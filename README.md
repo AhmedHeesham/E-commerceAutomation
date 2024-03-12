@@ -5,7 +5,7 @@ This framework aims to streamline and automate various processes within the [nop
 
 ## Page Object Model
 
-![POM File Tree](Images/scrTree.txt)
+![POM File Tree](/Images/scrTree.txt)
 
 The image above represents the file tree for the Page Object Model (POM) implemented in this framework. It provides a structured approach to organizing and managing web elements and actions within the automation framework.
 
